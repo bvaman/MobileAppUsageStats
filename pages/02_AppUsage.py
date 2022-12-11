@@ -14,6 +14,7 @@ def load_data():
     return data
 
 df=load_data()
+st.write(df.count())
 
 # Markdown , '#' indicates markdown, additional ones reduces text size
 st.header('Popular App Categories')
