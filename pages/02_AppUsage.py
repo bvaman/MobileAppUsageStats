@@ -14,13 +14,12 @@ def load_data():
     return data
 
 df=load_data()
-st.write(df.count())
 
 # Markdown , '#' indicates markdown, additional ones reduces text size
 st.header('Popular App Categories')
 st.write(''' 
-Social media is unsurprisingly the most used app category. 
-You can filter on any specific category to view how they compare against the rest.
+Social media is the most used app category across all age groups and enthnicities.  
+\nYou can filter on any specific category to view how they compare against the rest.
 
 You can slice the data further using the sidebar filters. 
 
@@ -56,20 +55,10 @@ appctg.extend(appctgs)
 
 sel_ctg = st.selectbox("*Choose an App Category", appctg)
 
-colors={'Communication':'#A49592', 'Finance':'#727077', 'Games':'#E99787', 'Lifestyle':'#615049', 
+colors={'Communication':'#006C84', 'Finance':'#66A5AD', 'Games':'#E99787', 'Lifestyle':'#615049', 
         'Music & Audio':'#537072', 'Productivity':'#8E9B97', 'Social Media':'#07575B', 'Sports':'#6EB5B0', 'Video': '#763626'}
 scale = alt.Scale(domain=['Communication', 'Finance', 'Games', 'Lifestyle', 'Music & Audio', 'Productivity', 'Social Media', 'Sports', 'Video'],
-                  range=['#A49592', '#727077', '#E99787', '#615049', '#537072', '#8E9B97', '#07575B', '#6EB5B0', '#763626'])
-
-#range=['#BC80BD', '#593704', '#0565A6', '#E31A1C', '#FF7F00', '#6A3D9A', '#5CA2D1', '#FDBF6F', '#229A00'])
-# range=['#f4d8af', '#dc7027', '#b6c48e', '#ea8a81', '#301008', '#a96762', '#16123f', '#282828', '#666161'])  
-#range=['#e7ba52', '#336666', '#aec7e8', '#1f77b4', '#9467bd', '#2b312e', '#c3544b', '#536b7b', '#8d756b'])                  
-#'#8199b8', '#a69998', '#95a36f'
-#color = alt.Color('AppCategory:N', scale=scale)
-#st.write(colors)
-#color='#e7ba52'
-#st.write("selected color:" )
-#st.write(colors[sel_ctg])
+                  range=['#006C84', '#66A5AD', '#E99787', '#615049', '#537072', '#8E9B97', '#07575B', '#6EB5B0', '#763626'])
 
 if sel_ctg=='All':
     colorscheme=alt.Color('AppCategory:N',legend=None, scale=scale)
@@ -91,16 +80,20 @@ if 'All' not in sel_race:
 ## Dataframe filtered on Race else existing state retained 
     dataf = dataf[dataf['Ethnicity'].str.contains('|'.join(sel_race)).any(level=0)]
 
-
 # Avg Time spent on Apps 
 time_spent = dataf.groupby(['AppCategory'])['Daily Time Spent Minutes'].mean().reset_index(name='Avg Time Spent')
+time_spent['Avg Time Spent'] = round(time_spent['Avg Time Spent'])
 
 time_donut=alt.Chart(time_spent).mark_arc(outerRadius=60,innerRadius=30).encode(
         theta=alt.Theta(field="Avg Time Spent", type="quantitative"),
         color=donutcol,
+        tooltip=['Avg Time Spent']        
+    ).properties(title='Average Time Spent (Mins)'
+    ).configure_title(
+        fontSize=15,
+        font='Courier',
+        anchor='end'
     )
-#text = time_donut.mark_text(radius=120, size=10).encode(text="AppCategory")
-
 
 # Main App Usage chart  
 popular_apps = dataf.groupby(['AppCategory','App Title'])['Panelistid'].nunique().reset_index(name='count')
@@ -109,12 +102,8 @@ popular_apps = dataf.groupby(['AppCategory','App Title'])['Panelistid'].nunique(
 Apps_Chart = alt.Chart(popular_apps).mark_bar().encode(
         x=alt.X('count', title='Number of Sessions'),
         y=alt.Y('App Title:N', sort='-x'),
-        #color=alt.Color('App Title:N', legend=None)
-        #color=alt.Color('AppCategory:N', legend=None, scale=scale)
         color=colorscheme
     )
-
-#st.altair_chart(time_donut | Apps_Chart, use_container_width=True)
 
 col1, col2 = st.columns([6,4])
 with col2:
@@ -127,8 +116,6 @@ with col1:
 if sel_ctg != 'All':
 ## Dataframe filtered on State
     dataf = dataf.loc[dataf['AppCategory'] == sel_ctg]
-    
-#st.map(dataf)
 
 #Map
 # US states background
@@ -144,8 +131,8 @@ background = alt.Chart(states).mark_geoshape(
 points=alt.Chart(dataf).mark_circle(size=8).encode(
     longitude='lon:Q',
     latitude='lat:Q',
-    #color=alt.Color('App Category:N', scale=alt.Scale(scheme='blueorange'))
-    color=colorscheme
+    color=colorscheme,
+    tooltip=['AppCategory:N','App Title:N']
 ).project(
     type='albersUsa'
 ).properties(

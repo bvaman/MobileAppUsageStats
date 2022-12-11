@@ -62,8 +62,8 @@ st.write("")
 
 # Day of week use
 dow_time = df.groupby(['DayofWeek','AppCategory','DAY'])['Daily Time Spent Minutes'].mean().reset_index(name='Avg Time Spent')    
+dow_time['Avg Time Spent'] = round(dow_time['Avg Time Spent'])
 dow_time=dow_time.sort_values('DAY')
-#st.write(dow_time)
 
 fig = px.bar(dow_time,x='AppCategory',y='Avg Time Spent', color='AppCategory',
         color_discrete_sequence=px.colors.sequential.Teal,
@@ -73,14 +73,6 @@ fig.update_yaxes(range=[0, 150])
 fig.update_layout(showlegend=False)
 
 #fig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 0.15
-#fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 0.15
+fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 0.025
 
 st.write(fig)
-
-# dow_scttr=alt.Chart(dow_time).mark_circle(size=100).encode(
-#     x='DayofWeek:N',
-#     y='Avg Time Spent:Q',
-#     color=alt.Color('AppCategory:N', legend=None),
-#     tooltip=['DayofWeek:N', 'Avg Time Spent:Q']
-# ).interactive()
-# st.altair_chart(dow_scttr, use_container_width=True)

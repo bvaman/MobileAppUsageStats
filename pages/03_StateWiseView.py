@@ -7,7 +7,7 @@ import streamlit as st
 st.header('App usage statistics by State' )
 st.write(''' 
 You can filter on a specific state to view locations where usage was reported.
-\nThe interactive map provides a 3D view of the area and hexagon heights represent the values.
+\nThe interactive map provides a 3D view of the area and hexagon heights indicate locations with higher usage.
 
 *You can slice the data further using the sidebar filters. 
 
@@ -77,6 +77,7 @@ st.pydeck_chart(pdk.Deck(
         longitude=midpoint[1],
         zoom=5,
         pitch=60,
+        bearing=27
     ),
     layers=[
         pdk.Layer(
@@ -98,6 +99,11 @@ st.pydeck_chart(pdk.Deck(
             #getFillColor=colors,
             get_radius=4500,
         ),
-    ],
+    ], tooltip={
+        'html': '<b>Elevation Value:</b> {colorValue} ',
+        'style': {
+            'color': 'white'
+        }
+    }
 ))
 
