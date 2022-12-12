@@ -17,3 +17,8 @@ The sample dataset used here contains a week's worth of usage behavior for aroun
     * Risk Analysis - Analyze user behavior to pre-emptively identify potential for usage fade-away and churn for streaming services
     * Quantitative Analysis - Threat posed by the rise of Neo and Challenger banks to traditional Banks
     * Accelerating Advertising Revenue - Analyze the rise and predict future trends of breakout apps in the financial space like Robinhood, Coinbase, Acorns and Stash.
+
+
+#### Future Work
+The sample dataset is limited to a single week, getting access to a longer time duration would help analyze other nuances with usage
+The application doesn't perform well due to the volume of data, I would like to explore options to speed it up.
