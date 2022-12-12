@@ -23,11 +23,11 @@ They offer continuous monitoring, collection and reporting of mobile consumer be
 The sample dataset used here contains a week's worth of usage behavior for around 21K users.
 
 * The exploratory data analysis presented in this app aims to 
-    * Porfile popular App Categories across various age groups, gender and ethnicities.
+    * Profile popular App Categories across various age groups, gender and ethnicities.
     * Explore usage statistics through the week.
     * The availability of geo-spatial attributes also provides the ability to view State/Region specific usage statistics.
 
-' ' 
+\n
 
 * Some business needs that could possibly be addressed with a complete dataset - 
     * Audience Segmentation - Profile popular gaming app users by gender, age and income level for better ad targets
