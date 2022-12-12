@@ -56,10 +56,10 @@ appctg.extend(appctgs)
 
 sel_ctg = st.selectbox("*Choose an App Category", appctg)
 
-colors={'Communication':'#006C84', 'Finance':'#66A5AD', 'Games':'#E99787', 'Lifestyle':'#615049', 
+colors={'Communication':'#006C84', 'Finance':'#A49592', 'Games':'#E99787', 'Lifestyle':'#615049', 
         'Music & Audio':'#537072', 'Productivity':'#8E9B97', 'Social Media':'#07575B', 'Sports':'#6EB5B0', 'Video': '#763626'}
 scale = alt.Scale(domain=['Communication', 'Finance', 'Games', 'Lifestyle', 'Music & Audio', 'Productivity', 'Social Media', 'Sports', 'Video'],
-                  range=['#006C84', '#66A5AD', '#E99787', '#615049', '#537072', '#8E9B97', '#07575B', '#6EB5B0', '#763626'])
+                  range=['#006C84', '#A49592', '#E99787', '#615049', '#537072', '#8E9B97', '#07575B', '#6EB5B0', '#763626'])
 
 if sel_ctg=='All':
     colorscheme=alt.Color('AppCategory:N',legend=None, scale=scale)
@@ -93,7 +93,7 @@ time_donut=alt.Chart(time_spent).mark_arc(outerRadius=80,innerRadius=40).encode(
     ).configure_title(
         fontSize=15,
         font='Sans serif',
-        anchor='middle'
+        anchor='end'
     )
 
 # Main App Usage chart  

@@ -102,11 +102,6 @@ st.pydeck_chart(pdk.Deck(
             #getFillColor=colors,
             get_radius=4500,
         ),
-    ], tooltip={
-        'html': '<b>Elevation Value:</b> {colorValue} ',
-        'style': {
-            'color': 'white'
-        }
-    }
+    ]
 ))
 
