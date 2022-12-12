@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import pydeck as pdk
 import streamlit as st
+st.set_page_config(layout="wide")
 
 # Markdown , '#' indicates markdown, additional ones reduces text size
 st.header('App usage statistics by State' )
@@ -17,6 +18,8 @@ You can filter on a specific state to view locations where usage was reported.
 @st.cache
 def load_data():
     data = pd.read_csv("data/MobileAppData_Updated.csv")
+    data.drop(columns=['StateCd','Dataconntech','Startmarket','Year Month','Daily Session Count','Foregroundduration',
+                'Frequency Of Use','Session Duration Minutes'])    
     return data
 
 df=load_data()
@@ -99,6 +102,11 @@ st.pydeck_chart(pdk.Deck(
             #getFillColor=colors,
             get_radius=4500,
         ),
-    ]
+    ], tooltip={
+        'html': '<b>Elevation Value:</b> {colorValue} ',
+        'style': {
+            'color': 'white'
+        }
+    }
 ))
 

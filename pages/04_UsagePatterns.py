@@ -3,6 +3,7 @@ import pandas as pd
 import altair as alt
 from vega_datasets import data
 import plotly.express as px
+st.set_page_config(layout="wide")
 
 states = alt.topo_feature(data.us_10m.url, feature='states')
 
@@ -42,7 +43,7 @@ selminage, selmaxage = Model
 
 race=['All']
 race.extend(df['Ethnicity'].unique().tolist())
-sel_race = st.sidebar.multiselect("Select one or more User's Race/Ethnicity:", race,default=["White"])
+sel_race = st.sidebar.multiselect("Select one or more User's Race/Ethnicity:", race,default=["Black or African American"])
 
 sel_gender = st.sidebar.multiselect("Select User's Gender:", ["Female","Male"],default=["Female","Male"])
 
@@ -66,11 +67,12 @@ dow_time['Avg Time Spent'] = round(dow_time['Avg Time Spent'])
 dow_time=dow_time.sort_values('DAY')
 
 fig = px.bar(dow_time,x='AppCategory',y='Avg Time Spent', color='AppCategory',
-        color_discrete_sequence=px.colors.sequential.Teal,
+        color_discrete_sequence=px.colors.sequential.Blugrn_r,
         animation_frame='DayofWeek', animation_group='AppCategory')
 
-fig.update_yaxes(range=[0, 150])
+#fig.update_yaxes(range=[0, 150])
 fig.update_layout(showlegend=False)
+fig.update_layout(width=900)
 
 #fig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 0.15
 fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 0.025

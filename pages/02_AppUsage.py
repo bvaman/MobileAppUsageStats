@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 from vega_datasets import data
-
+st.set_page_config(layout="wide")
 
 #st.markdown("# Page 2 🎉")
 #st.sidebar.markdown("# Page 2 🎉")
@@ -11,6 +11,8 @@ from vega_datasets import data
 @st.cache
 def load_data():
     data = pd.read_csv("data/MobileAppData_Updated.csv")
+    data.drop(columns=['StateCd','Dataconntech','Startmarket','Year Month','Daily Session Count','Foregroundduration',
+                'Frequency Of Use','Session Duration Minutes'])
     return data
 
 df=load_data()
@@ -43,8 +45,7 @@ selminage, selmaxage = Model
 
 race=['All']
 race.extend(df['Ethnicity'].unique().tolist())
-#race= df['Ethnicity'].unique().tolist()
-sel_race = st.sidebar.multiselect("Select one or more User's Race/Ethnicity:", race,default=["White"])
+sel_race = st.sidebar.multiselect("Select one or more User's Race/Ethnicity:", race,default=["Black or African American"])
 
 sel_gender = st.sidebar.multiselect("Select User's Gender:", ["Female","Male"],default=["Female","Male"])
 
@@ -84,15 +85,15 @@ if 'All' not in sel_race:
 time_spent = dataf.groupby(['AppCategory'])['Daily Time Spent Minutes'].mean().reset_index(name='Avg Time Spent')
 time_spent['Avg Time Spent'] = round(time_spent['Avg Time Spent'])
 
-time_donut=alt.Chart(time_spent).mark_arc(outerRadius=60,innerRadius=30).encode(
+time_donut=alt.Chart(time_spent).mark_arc(outerRadius=90,innerRadius=50).encode(
         theta=alt.Theta(field="Avg Time Spent", type="quantitative"),
         color=donutcol,
         tooltip=['Avg Time Spent']        
     ).properties(title='Average Time Spent (Mins)'
     ).configure_title(
         fontSize=15,
-        font='Courier',
-        anchor='end'
+        font='Sans serif',
+        anchor='middle'
     )
 
 # Main App Usage chart  
