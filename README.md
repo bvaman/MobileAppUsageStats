@@ -5,7 +5,7 @@ They offer continuous monitoring, collection and reporting of mobile consumer be
 
 
 The sample dataset used here contains a week's worth of usage behavior for around 21K users.
-\n The exploratory visualization app can be access here - https://bvaman-mobileappusagestats-home-u9epx8.streamlit.app/
+The exploratory visualization app can be access here - https://bvaman-mobileappusagestats-home-u9epx8.streamlit.app/
 
 * The exploratory data analysis presented in this app aims to 
     * Profile popular App Categories across various age groups, gender and ethnicities.
