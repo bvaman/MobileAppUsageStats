@@ -21,7 +21,8 @@ df=load_data()
 st.header('Popular App Categories')
 st.write(''' 
 Social media is the most used app category across all age groups and enthnicities.  
-\nYou can filter on any specific category to view how they compare against the rest.
+\nYou can filter on any specific category to view how they compare against the rest. 
+The map view below provides the geographic distribution of these app usages.
 
 You can slice the data further using the sidebar filters. 
 
