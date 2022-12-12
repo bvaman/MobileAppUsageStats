@@ -72,7 +72,7 @@ fig = px.bar(dow_time,x='AppCategory',y='Avg Time Spent', color='AppCategory',
 
 #fig.update_yaxes(range=[0, 150])
 fig.update_layout(showlegend=False)
-fig.update_layout(width=900)
+fig.update_layout(width=800)
 
 #fig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 0.15
 fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 0.025

@@ -85,7 +85,7 @@ if 'All' not in sel_race:
 time_spent = dataf.groupby(['AppCategory'])['Daily Time Spent Minutes'].mean().reset_index(name='Avg Time Spent')
 time_spent['Avg Time Spent'] = round(time_spent['Avg Time Spent'])
 
-time_donut=alt.Chart(time_spent).mark_arc(outerRadius=90,innerRadius=50).encode(
+time_donut=alt.Chart(time_spent).mark_arc(outerRadius=80,innerRadius=40).encode(
         theta=alt.Theta(field="Avg Time Spent", type="quantitative"),
         color=donutcol,
         tooltip=['Avg Time Spent']        
