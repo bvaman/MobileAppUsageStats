@@ -85,7 +85,7 @@ if 'All' not in sel_race:
 time_spent = dataf.groupby(['AppCategory'])['Daily Time Spent Minutes'].mean().reset_index(name='Avg Time Spent')
 time_spent['Avg Time Spent'] = round(time_spent['Avg Time Spent'])
 
-time_donut=alt.Chart(time_spent).mark_arc(outerRadius=80,innerRadius=40).encode(
+time_donut=alt.Chart(time_spent).mark_arc(outerRadius=70,innerRadius=40).encode(
         theta=alt.Theta(field="Avg Time Spent", type="quantitative"),
         color=donutcol,
         tooltip=['Avg Time Spent']        
@@ -125,7 +125,7 @@ background = alt.Chart(states).mark_geoshape(
     fill='lightgray',
     stroke='white'
 ).properties(
-    width=900,
+    width=800,
     height=600
 ).project(type='albersUsa')
 
@@ -137,7 +137,7 @@ points=alt.Chart(dataf).mark_circle(size=8).encode(
 ).project(
     type='albersUsa'
 ).properties(
-    width=900,
+    width=800,
     height=600
 )
 
