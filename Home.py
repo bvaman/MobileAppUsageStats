@@ -27,7 +27,7 @@ The sample dataset used here contains a week's worth of usage behavior for aroun
     * Explore usage statistics through the week.
     * The availability of geo-spatial attributes also provides the ability to view State/Region specific usage statistics.
 
-\n
+\n\n
 
 * Some business needs that could possibly be addressed with a complete dataset - 
     * Audience Segmentation - Profile popular gaming app users by gender, age and income level for better ad targets
