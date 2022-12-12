@@ -20,5 +20,5 @@ The sample dataset used here contains a week's worth of usage behavior for aroun
 
 
 #### Future Work
-The sample dataset is limited to a single week, getting access to a longer time duration would help analyze other nuances with usage
+The sample dataset is limited to a single week, getting access to a longer time duration would help analyze other nuances with usage.
 The application doesn't perform well due to the volume of data, I would like to explore options to speed it up.
